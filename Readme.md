@@ -43,10 +43,10 @@ Docker server (AKA docker daemon): The module that actually process those comman
 
 ## Cheatsheet
 
-# $ docker version
+### $ docker version
 // Output: client and server modules information
 
-# $ docker run hello-world
+### $ docker run hello-world
 // Output:
 /*
   Unable to find image 'hello-world:latest' locally
@@ -156,14 +156,14 @@ Diagram of a container
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
 
 Container lifecycle
-# $ docker run = $ docker create + $ docker start
+### $ docker run = $ docker create + $ docker start
 
 When a container is stopped, it can be run again but default command used the first time it run can not be override.
 
 (*redis)
 redis-servers instantiate a database-like conenctions and we can interact with it with another module called redis-cli
 Wen we install redis-server as a docker container, docker run redis-server, we can not access redis-cli from outside the container
-This is the reason for which we whould want to run ANOTHER command inside that container with the # $ docker exec -it {dockerId} redis-cli
+This is the reason for which we whould want to run ANOTHER command inside that container with the $ docker exec -it {dockerId} redis-cli
 
 (*redis-it-flag)
 All containers have 3 communication channels STDIN STDOUT STDERR (Standar in, standar out, standar error)
@@ -187,17 +187,17 @@ The cmd is the command that the container will run once the container is run.
 
 Cheatsheet
 
-# $ docker version
+### $ docker version
 // Output: client and server modules information
 
-# $ docker run hello-world
+### $ docker run hello-world
 // Output:
 /*
 
 Overriding default commands once a container is up
 
-# $ docker run image [overrideCommand]
-# $ docker run busybox ls
+### $ docker run image [overrideCommand]
+### $ docker run busybox ls
 
 //Output:
 /*
@@ -221,46 +221,46 @@ This is not enable in an image like hello-world because it does not copy the fil
       -var
 )
 
-# $ docker ps
+### $ docker ps
 // Output: List containers running
 
-# $ docker ps --all
+### $ docker ps --all
 // Output: List all containers that run in a point in time in the pase
 
-# $ docker create {dockerName}
+### $ docker create {dockerName}
 
-# $ docker start [-a] {dockerId}
+### $ docker start [-a] {dockerId}
 // Run the container.
 // -a : watch the container for any output and print it out to the terminal, every output.
 
-# $ docker system prune
+### $ docker system prune
 // Output: Delete not only stopped containers but also other things like network resources not used or images in our build cache
 
-# $ docker logs {dockerId}
+### $ docker logs {dockerId}
 // Output: watch the output that the container gave when run. This logs command does not re-run the container, only watches output
 
-Assuming we run the # $ docker run busybox ping google.com, we never stopped it, it ketp pinging google.com, docker logs {dockerId} will show every printed latency to google.com
+Assuming we run the $ docker run busybox ping google.com, we never stopped it, it ketp pinging google.com, docker logs {dockerId} will show every printed latency to google.com
 
-# $ docker stop {containerId}
-# $ docker kill {containerId}
+### $ docker stop {containerId}
+### $ docker kill {containerId}
 // Stop or kill a process. They both send a stop or kill signal (SIGNTERM / SIGNKILL). The stop will tell the container its process in  due time, while the kill process ordered to STOP and KILLED the process right now.
 
-# $ docker exec -it {dockerId} {command}
+### $ docker exec -it {dockerId} {command}
 // See (*redis) -
 // See (*redis-it-flag)
 
-# $ docker exec -it {dockerId} sh
+### $ docker exec -it {dockerId} sh
 // The sh means a particular command processor - terminal - (bash, powershell, zsh, sh)
 // Only dockerId, no tag alias
 
-# $ docker run -it busybox sh
+### $ docker run -it busybox sh
 // We can also start a container and at the same time exec another command related to that programm. As well as give the -i and -t flags
 
-# $ docker build .
+### $ docker build .
 // This command will build our image . We have to be inside the directory where the dockerfile is
 
-# $ docker build -t stefanofrontani/simple-web .
+### $ docker build -t stefanofrontani/simple-web .
 // That will build the container with the alias, so we dont have to call the id every time
-# $ docker run stefanofrontani/simple-web
+### $ docker run stefanofrontani/simple-web
 
-# $ docker run -p portFromSourceMachine:containerPort stefanofrontani/simple-web
+### $ docker run -p portFromSourceMachine:containerPort stefanofrontani/simple-web
